@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+      .page { position: absolute; inset: 0; overflow: hidden; background: #000; }
+      .page img { display: block; width: 1920px; height: 1080px; transform-origin: 50% 50%; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1920" data-height="1080">
+      <div id="p01" class="clip page" data-start="0.0" data-duration="1.5" data-track-index="1"><img id="p01-img" src="assets/pages/page01.png" alt="GenZone storyboard page 1"></div>
+      <div id="p02" class="clip page" data-start="1.5" data-duration="2" data-track-index="1"><img id="p02-img" src="assets/pages/page02.png" alt="GenZone storyboard page 2"></div>
+      <div id="p03" class="clip page" data-start="3.5" data-duration="3" data-track-index="1"><img id="p03-img" src="assets/pages/page03.png" alt="GenZone storyboard page 3"></div>
+      <div id="p04" class="clip page" data-start="6.5" data-duration="1.5" data-track-index="1"><img id="p04-img" src="assets/pages/page04.png" alt="GenZone storyboard page 4"></div>
+      <div id="p05" class="clip page" data-start="8.0" data-duration="3" data-track-index="1"><img id="p05-img" src="assets/pages/page05.png" alt="GenZone storyboard page 5"></div>
+      <div id="p06" class="clip page" data-start="11.0" data-duration="1.5" data-track-index="1"><img id="p06-img" src="assets/pages/page06.png" alt="GenZone storyboard page 6"></div>
+      <div id="p07" class="clip page" data-start="12.5" data-duration="3.5" data-track-index="1"><img id="p07-img" src="assets/pages/page07.png" alt="GenZone storyboard page 7"></div>
+      <div id="p08" class="clip page" data-start="16.0" data-duration="2.5" data-track-index="1"><img id="p08-img" src="assets/pages/page08.png" alt="GenZone storyboard page 8"></div>
+      <div id="p09" class="clip page" data-start="18.5" data-duration="1.5" data-track-index="1"><img id="p09-img" src="assets/pages/page09.png" alt="GenZone storyboard page 9"></div>
+      <div id="p10" class="clip page" data-start="20.0" data-duration="2.5" data-track-index="1"><img id="p10-img" src="assets/pages/page10.png" alt="GenZone storyboard page 10"></div>
+      <div id="p11" class="clip page" data-start="22.5" data-duration="2.5" data-track-index="1"><img id="p11-img" src="assets/pages/page11.png" alt="GenZone storyboard page 11"></div>
+      <div id="p12" class="clip page" data-start="25.0" data-duration="2" data-track-index="1"><img id="p12-img" src="assets/pages/page12.png" alt="GenZone storyboard page 12"></div>
+      <div id="p13" class="clip page" data-start="27.0" data-duration="2.5" data-track-index="1"><img id="p13-img" src="assets/pages/page13.png" alt="GenZone storyboard page 13"></div>
+      <div id="p14" class="clip page" data-start="29.5" data-duration="1.5" data-track-index="1"><img id="p14-img" src="assets/pages/page14.png" alt="GenZone storyboard page 14"></div>
+      <div id="p15" class="clip page" data-start="31.0" data-duration="3" data-track-index="1"><img id="p15-img" src="assets/pages/page15.png" alt="GenZone storyboard page 15"></div>
+      <div id="p16" class="clip page" data-start="34.0" data-duration="2.5" data-track-index="1"><img id="p16-img" src="assets/pages/page16.png" alt="GenZone storyboard page 16"></div>
+      <div id="p17" class="clip page" data-start="36.5" data-duration="2.5" data-track-index="1"><img id="p17-img" src="assets/pages/page17.png" alt="GenZone storyboard page 17"></div>
+      <div id="p18" class="clip page" data-start="39.0" data-duration="1.5" data-track-index="1"><img id="p18-img" src="assets/pages/page18.png" alt="GenZone storyboard page 18"></div>
+      <div id="p19" class="clip page" data-start="40.5" data-duration="3" data-track-index="1"><img id="p19-img" src="assets/pages/page19.png" alt="GenZone storyboard page 19"></div>
+      <div id="p20" class="clip page" data-start="43.5" data-duration="2.5" data-track-index="1"><img id="p20-img" src="assets/pages/page20.png" alt="GenZone storyboard page 20"></div>
+      <div id="p21" class="clip page" data-start="46.0" data-duration="1.5" data-track-index="1"><img id="p21-img" src="assets/pages/page21.png" alt="GenZone storyboard page 21"></div>
+      <div id="p22" class="clip page" data-start="47.5" data-duration="3" data-track-index="1"><img id="p22-img" src="assets/pages/page22.png" alt="GenZone storyboard page 22"></div>
+      <div id="p23" class="clip page" data-start="50.5" data-duration="1.5" data-track-index="1"><img id="p23-img" src="assets/pages/page23.png" alt="GenZone storyboard page 23"></div>
+      <div id="p24" class="clip page" data-start="52.0" data-duration="8" data-track-index="1"><img id="p24-img" src="assets/pages/page24.png" alt="GenZone storyboard page 24"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#p01-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 0.0);
+      tl.fromTo("#p02-img", {scale: 1}, {scale: 1.025, duration: 2, ease: "none"}, 1.5);
+      tl.fromTo("#p03-img", {scale: 1.08}, {scale: 1, duration: 0.45, ease: "expo.out"}, 3.5);
+      tl.fromTo("#p04-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 6.5);
+      tl.fromTo("#p05-img", {scale: 1}, {scale: 1.025, duration: 3, ease: "none"}, 8.0);
+      tl.fromTo("#p06-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 11.0);
+      tl.fromTo("#p07-img", {scale: 1.08}, {scale: 1, duration: 0.45, ease: "expo.out"}, 12.5);
+      tl.fromTo("#p08-img", {scale: 1}, {scale: 1.025, duration: 2.5, ease: "none"}, 16.0);
+      tl.fromTo("#p09-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 18.5);
+      tl.fromTo("#p10-img", {scale: 1}, {scale: 1.025, duration: 2.5, ease: "none"}, 20.0);
+      tl.fromTo("#p11-img", {scale: 1}, {scale: 1.025, duration: 2.5, ease: "none"}, 22.5);
+      tl.fromTo("#p12-img", {scale: 1}, {scale: 1.025, duration: 2, ease: "none"}, 25.0);
+      tl.fromTo("#p13-img", {scale: 1}, {scale: 1.025, duration: 2.5, ease: "none"}, 27.0);
+      tl.fromTo("#p14-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 29.5);
+      tl.fromTo("#p15-img", {scale: 1.08}, {scale: 1, duration: 0.45, ease: "expo.out"}, 31.0);
+      tl.fromTo("#p16-img", {scale: 1.08}, {scale: 1, duration: 0.45, ease: "expo.out"}, 34.0);
+      tl.fromTo("#p17-img", {scale: 1.08}, {scale: 1, duration: 0.45, ease: "expo.out"}, 36.5);
+      tl.fromTo("#p18-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 39.0);
+      tl.fromTo("#p19-img", {scale: 1}, {scale: 1.025, duration: 3, ease: "none"}, 40.5);
+      tl.fromTo("#p20-img", {scale: 1}, {scale: 1.025, duration: 2.5, ease: "none"}, 43.5);
+      tl.fromTo("#p21-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 46.0);
+      tl.fromTo("#p22-img", {scale: 1}, {scale: 1.025, duration: 3, ease: "none"}, 47.5);
+      tl.fromTo("#p23-img", {scale: 1}, {scale: 1.025, duration: 1.5, ease: "none"}, 50.5);
+      tl.fromTo("#p24-img", {scale: 1.08}, {scale: 1, duration: 0.45, ease: "expo.out"}, 52.0);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
