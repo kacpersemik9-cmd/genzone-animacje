@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/inter-var.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #5b4bd6;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #a78bfa 0%, #7c6cf0 45%, #60a5fa 100%);
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+      }
+      #blob-a {
+        width: 620px;
+        height: 620px;
+        left: 520px;
+        top: 160px;
+        background: rgba(236, 72, 153, 0.3);
+      }
+      #blob-b {
+        width: 560px;
+        height: 560px;
+        left: 900px;
+        top: 360px;
+        background: rgba(56, 189, 248, 0.35);
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #card {
+        width: 760px;
+        height: 520px;
+        border-radius: 40px;
+        background: rgba(255, 255, 255, 0.55);
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(28px) saturate(140%);
+        -webkit-backdrop-filter: blur(28px) saturate(140%);
+        box-shadow:
+          0 40px 90px rgba(40, 20, 120, 0.28),
+          inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+      #label {
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        color: #454854;
+      }
+      #number {
+        font-size: 220px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: #1c1b3a;
+        font-variant-numeric: tabular-nums;
+      }
+      #pill {
+        display: block;
+        margin-top: 10px;
+        padding: 16px 36px;
+        border-radius: 999px;
+        background: #15803d;
+        color: #ffffff;
+        font-size: 30px;
+        font-weight: 600;
+        box-shadow: 0 12px 30px rgba(21, 128, 61, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="6"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="bg" class="clip" data-start="0" data-duration="6" data-track-index="0">
+        <div id="blob-a" class="blob"></div>
+        <div id="blob-b" class="blob"></div>
+      </div>
+      <div id="stage" class="clip" data-start="0" data-duration="6" data-track-index="1">
+        <div id="card">
+          <div id="label">MY FIRST RENDER</div>
+          <div id="number">0</div>
+          <div id="pill">Made with Claude Code</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Background drifts gently the whole time
+      tl.fromTo("#blob-a", { x: -40, y: -20 }, { x: 60, y: 30, duration: 6, ease: "sine.inOut" }, 0);
+      tl.fromTo("#blob-b", { x: 40, y: 20 }, { x: -60, y: -30, duration: 6, ease: "sine.inOut" }, 0);
+
+      // Card rises in
+      tl.fromTo(
+        "#card",
+        { y: 120, opacity: 0, scale: 0.96 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" },
+        0.1
+      );
+
+      // Number counts 0 -> 100 over 2 seconds
+      const counter = { v: 0 };
+      const numberEl = document.getElementById("number");
+      tl.fromTo(
+        counter,
+        { v: 0 },
+        {
+          v: 100,
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: () => {
+            numberEl.textContent = String(Math.round(counter.v));
+          },
+        },
+        0.8
+      );
+
+      // Green pill pops in at 4s
+      tl.fromTo(
+        "#pill",
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.2)" },
+        4
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
