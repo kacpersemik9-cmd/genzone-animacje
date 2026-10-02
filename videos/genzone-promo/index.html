@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/inter-var.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a1226; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0a1226;
+               font-family: "Inter", sans-serif; color: #ffffff; }
+      .scene { position: absolute; inset: 0; background: #0a1226; }
+      .card { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+      .big { font-size: 156px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.05;
+              text-align: center; max-width: 1700px; }
+      .w { display: inline-block; }
+      .a { color: #4f8bff; }
+      .win { position: absolute; inset: 0; overflow: hidden; }
+      .cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1032px; transform-origin: 0 0; }
+      .cap { position: absolute; left: 140px; right: 140px; top: 760px; text-align: center;
+              font-size: 72px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.12; }
+      .endwrap { position: absolute; inset: 0; display: flex; flex-direction: column;
+                  align-items: center; justify-content: center; gap: 44px; }
+      #logo { display: block; width: 820px; height: 220px;
+               -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 62%, transparent 100%);
+               mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, #000 62%, transparent 100%); }
+      .tag { font-size: 76px; font-weight: 800; letter-spacing: -0.03em; }
+      .cta { display: block; padding: 26px 52px; border-radius: 999px; background: #2d65f0;
+              font-size: 44px; font-weight: 600; color: #ffffff; }
+      .cta b { font-weight: 800; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1920" data-height="1080">
+      <div id="c00" class="clip scene" data-start="0" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w">Your</span> <span class="w">business</span> <span class="w">is</span> <span class="w a">global.</span></div></div></div>
+      <div id="c01" class="clip scene" data-start="2" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w">Is</span> <span class="w">your</span> <span class="w a">company?</span></div></div></div>
+      <div id="c02" class="clip scene" data-start="4" data-duration="3" data-track-index="1"><div class="win"><img id="c02-img" class="cam" src="assets/screens/p19.png" alt=""></div><div class="cap"><span class="w">Stuck</span> <span class="w">on</span> <span class="w">the</span> <span class="w a">paperwork?</span></div></div>
+      <div id="c03" class="clip scene" data-start="7" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w">GenZone</span> <span class="w a">handles</span> <span class="w a">it.</span></div></div></div>
+      <div id="c04" class="clip scene" data-start="9" data-duration="3" data-track-index="1"><div class="win"><img id="c04-img" class="cam" src="assets/screens/p8.png" alt=""></div><div class="cap"><span class="w a">Dubai:</span> <span class="w">free-zone</span> <span class="w">company,</span> <span class="w">trade</span> <span class="w">licence,</span> <span class="w">residence</span> <span class="w">visas</span></div></div>
+      <div id="c05" class="clip scene" data-start="12" data-duration="3" data-track-index="1"><div class="win"><img id="c05-img" class="cam" src="assets/screens/p8.png" alt=""></div><div class="cap"><span class="w a">US</span> <span class="w a">LLC:</span> <span class="w">formation,</span> <span class="w">EIN,</span> <span class="w">registered</span> <span class="w">agent</span></div></div>
+      <div id="c06" class="clip scene" data-start="15" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w">Pick</span> <span class="w a">UAE</span> <span class="w">or</span> <span class="w a">US.</span></div></div></div>
+      <div id="c07" class="clip scene" data-start="17" data-duration="3" data-track-index="1"><div class="win"><img id="c07-img" class="cam" src="assets/screens/p8.png" alt=""></div><div class="cap"><span class="w">Licence</span> <span class="w">only,</span> <span class="w">or</span> <span class="w">add</span> <span class="w a">residence</span> <span class="w a">visas</span></div></div>
+      <div id="c08" class="clip scene" data-start="20" data-duration="3" data-track-index="1"><div class="win"><img id="c08-img" class="cam" src="assets/screens/p8.png" alt=""></div><div class="cap"><span class="w">Basic,</span> <span class="w">Advanced</span> <span class="w">or</span> <span class="w a">Done-For-You</span></div></div>
+      <div id="c09" class="clip scene" data-start="23" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w a">End</span> <span class="w a">to</span> <span class="w a">end.</span></div></div></div>
+      <div id="c10" class="clip scene" data-start="25" data-duration="4" data-track-index="1"><div class="win"><img id="c10-img" class="cam" src="assets/screens/p19.png" alt=""></div><div class="cap"><span class="w">Licence,</span> <span class="w">visas,</span> <span class="w a">bank</span> <span class="w a">account</span> <span class="w a">intro</span></div></div>
+      <div id="c11" class="clip scene" data-start="29" data-duration="3" data-track-index="1"><div class="win"><img id="c11-img" class="cam" src="assets/screens/p19.png" alt=""></div><div class="cap"><span class="w">Know</span> <span class="w">the</span> <span class="w a">real</span> <span class="w a">cost</span> <span class="w">before</span> <span class="w">you</span> <span class="w">commit</span></div></div>
+      <div id="c12" class="clip scene" data-start="32" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w">No</span> <span class="w">need</span> <span class="w">to</span> <span class="w a">fly</span> <span class="w a">to</span> <span class="w a">Dubai.</span></div></div></div>
+      <div id="c13" class="clip scene" data-start="34" data-duration="3" data-track-index="1"><div class="win"><img id="c13-img" class="cam" src="assets/screens/p19.png" alt=""></div><div class="cap"><span class="w">A</span> <span class="w a">real</span> <span class="w a">person</span> <span class="w">on</span> <span class="w">WhatsApp</span></div></div>
+      <div id="c14" class="clip scene" data-start="37" data-duration="4" data-track-index="1"><div class="win"><img id="c14-img" class="cam" src="assets/screens/p19.png" alt=""></div><div class="cap"><span class="w">Compare</span> <span class="w a">Dubai</span> <span class="w a">vs</span> <span class="w a">US.</span> <span class="w">No</span> <span class="w">guessing.</span></div></div>
+      <div id="c15" class="clip scene" data-start="41" data-duration="2" data-track-index="1"><div class="card"><div class="big"><span class="w a">Fully</span> <span class="w a">remote.</span></div></div></div>
+      <div id="c16" class="clip scene" data-start="43" data-duration="3" data-track-index="1"><div class="win"><img id="c16-img" class="cam" src="assets/screens/p15.png" alt=""></div><div class="cap"><span class="w">See</span> <span class="w">what</span> <span class="w a">clients</span> <span class="w a">say</span> <span class="w">on</span> <span class="w">Google</span></div></div>
+      <div id="c17" class="clip scene" data-start="46" data-duration="3" data-track-index="1"><div class="win"><img id="c17-img" class="cam" src="assets/screens/p15.png" alt=""></div><div class="cap"><span class="w">Free</span> <span class="w a">guides</span> <span class="w a">&amp;</span> <span class="w a">walkthroughs</span></div></div>
+      <div id="end" class="clip scene" data-start="49" data-duration="11" data-track-index="1"><div class="endwrap"><img id="logo" src="assets/screens/logo.png" alt="GenZone"><div id="tag" class="tag"><span class="w">Your company.</span> <span class="w">Anywhere.</span> <span class="w a">Done for you.</span></div><div id="cta" class="cta">Book your free consultation at <b>genzone.com</b></div></div></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c00 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 0);
+      tl.fromTo("#c00 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 0);
+      tl.fromTo("#c01 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 2);
+      tl.fromTo("#c01 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 2);
+      tl.fromTo("#c02 .win", {clipPath: "inset(0px 0px 0px 0px round 0px)"}, {clipPath: "inset(334.0px 228.0px 614.0px 228.0px round 22px)", duration: 0.7, ease: "expo.inOut"}, 4.15);
+      tl.fromTo("#c02 .cam", {"x": -44.65, "y": 0, "scale": 1.0465}, {...{"x": -1518.0, "y": -1337.0, "scale": 3.0}, duration: 0.7, ease: "expo.out"}, 4.15);
+      tl.to("#c02 .cam", {...{"x": -1604.73, "y": -1397.79, "scale": 3.105}, duration: 2.15, ease: "none"}, 4.85);
+      tl.fromTo("#c02 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 4.5);
+      tl.fromTo("#c03 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 7);
+      tl.fromTo("#c03 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 7);
+      tl.set("#c04 .win", {clipPath: "inset(334.0px 265.5px 614.0px 265.5px round 22px)"}, 9);
+      tl.fromTo("#c04 .cam", {"x": -1078.8, "y": -540.8, "scale": 2.4}, {...{"x": -1588.5, "y": -776.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 9);
+      tl.to("#c04 .cam", {...{"x": -1677.7, "y": -817.16, "scale": 3.105}, duration: 2.5, ease: "none"}, 9.5);
+      tl.fromTo("#c04 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 9.35);
+      tl.set("#c05 .win", {clipPath: "inset(334.0px 273.0px 614.0px 273.0px round 22px)"}, 12);
+      tl.fromTo("#c05 .cam", {"x": -1588.5, "y": -776.0, "scale": 3.0}, {...{"x": -2985.0, "y": -776.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 12);
+      tl.to("#c05 .cam", {...{"x": -3123.07, "y": -817.16, "scale": 3.105}, duration: 2.5, ease: "none"}, 12.5);
+      tl.fromTo("#c05 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 12.35);
+      tl.fromTo("#c06 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 15);
+      tl.fromTo("#c06 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 15);
+      tl.set("#c07 .win", {clipPath: "inset(220.0px 453.0px 500.0px 453.0px round 22px)"}, 17);
+      tl.fromTo("#c07 .cam", {"x": -928.8, "y": -756.8, "scale": 2.4}, {...{"x": -1401.0, "y": -1046.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 17);
+      tl.to("#c07 .cam", {...{"x": -1483.63, "y": -1096.61, "scale": 3.105}, duration: 2.5, ease: "none"}, 17.5);
+      tl.fromTo("#c07 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 17.35);
+      tl.set("#c08 .win", {clipPath: "inset(220.0px 618.0px 500.0px 618.0px round 22px)"}, 20);
+      tl.fromTo("#c08 .cam", {"x": -1920.0, "y": -756.8, "scale": 2.4}, {...{"x": -2640.0, "y": -1046.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 20);
+      tl.to("#c08 .cam", {...{"x": -2766.0, "y": -1096.61, "scale": 3.105}, duration: 2.5, ease: "none"}, 20.5);
+      tl.fromTo("#c08 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 20.35);
+      tl.fromTo("#c09 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 23);
+      tl.fromTo("#c09 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 23);
+      tl.fromTo("#c10 .win", {clipPath: "inset(0px 0px 0px 0px round 0px)"}, {clipPath: "inset(301.0px 220.5px 581.0px 220.5px round 22px)", duration: 0.7, ease: "expo.inOut"}, 25.15);
+      tl.fromTo("#c10 .cam", {"x": -44.65, "y": 0, "scale": 1.0465}, {...{"x": -1525.5, "y": -1568.0, "scale": 3.0}, duration: 0.7, ease: "expo.out"}, 25.15);
+      tl.to("#c10 .cam", {...{"x": -1612.49, "y": -1636.88, "scale": 3.105}, duration: 3.15, ease: "none"}, 25.85);
+      tl.fromTo("#c10 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 25.5);
+      tl.set("#c11 .win", {clipPath: "inset(334.0px 220.5px 614.0px 220.5px round 22px)"}, 29);
+      tl.fromTo("#c11 .cam", {"x": -1525.5, "y": -1568.0, "scale": 3.0}, {...{"x": -1525.5, "y": -1601.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 29);
+      tl.to("#c11 .cam", {...{"x": -1612.49, "y": -1671.03, "scale": 3.105}, duration: 2.5, ease: "none"}, 29.5);
+      tl.fromTo("#c11 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 29.35);
+      tl.fromTo("#c12 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 32);
+      tl.fromTo("#c12 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 32);
+      tl.fromTo("#c13 .win", {clipPath: "inset(0px 0px 0px 0px round 0px)"}, {clipPath: "inset(334.0px 220.5px 614.0px 220.5px round 22px)", duration: 0.7, ease: "expo.inOut"}, 34.15);
+      tl.fromTo("#c13 .cam", {"x": -44.65, "y": 0, "scale": 1.0465}, {...{"x": -3121.5, "y": -1535.0, "scale": 3.0}, duration: 0.7, ease: "expo.out"}, 34.15);
+      tl.to("#c13 .cam", {...{"x": -3264.35, "y": -1602.72, "scale": 3.105}, duration: 2.15, ease: "none"}, 34.85);
+      tl.fromTo("#c13 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 34.5);
+      tl.set("#c14 .win", {clipPath: "inset(334.0px 220.5px 614.0px 220.5px round 22px)"}, 37);
+      tl.fromTo("#c14 .cam", {"x": -3121.5, "y": -1535.0, "scale": 3.0}, {...{"x": -3121.5, "y": -1601.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 37);
+      tl.to("#c14 .cam", {...{"x": -3264.35, "y": -1671.03, "scale": 3.105}, duration: 3.5, ease: "none"}, 37.5);
+      tl.fromTo("#c14 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 37.35);
+      tl.fromTo("#c15 .w", {yPercent: 110, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.32, ease: "back.out(1.7)", stagger: 0.07}, 41);
+      tl.fromTo("#c15 .card", {scale: 1}, {scale: 1.05, duration: 2, ease: "none"}, 41);
+      tl.set("#c16 .win", {clipPath: "inset(319.0px 564.0px 599.0px 564.0px round 22px)"}, 43);
+      tl.fromTo("#c16 .cam", {"x": -2426.4, "y": -783.2, "scale": 2.4}, {...{"x": -3273.0, "y": -1079.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 43);
+      tl.to("#c16 .cam", {...{"x": -3421.15, "y": -1130.76, "scale": 3.105}, duration: 2.5, ease: "none"}, 43.5);
+      tl.fromTo("#c16 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 43.35);
+      tl.set("#c17 .win", {clipPath: "inset(319.0px 564.0px 599.0px 564.0px round 22px)"}, 46);
+      tl.fromTo("#c17 .cam", {"x": -3273.0, "y": -1079.0, "scale": 3.0}, {...{"x": -3273.0, "y": -1253.0, "scale": 3.0}, duration: 0.5, ease: "expo.out"}, 46);
+      tl.to("#c17 .cam", {...{"x": -3421.15, "y": -1310.85, "scale": 3.105}, duration: 2.5, ease: "none"}, 46.5);
+      tl.fromTo("#c17 .cap .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.3, ease: "power3.out", stagger: 0.04}, 46.35);
+      tl.fromTo("#logo", {scale: 1.25, opacity: 0}, {scale: 1, opacity: 1, duration: 0.6, ease: "expo.out"}, 49);
+      tl.fromTo("#tag .w", {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.35, ease: "back.out(1.7)", stagger: 0.6}, 50);
+      tl.fromTo("#cta", {y: 40, opacity: 0}, {y: 0, opacity: 1, duration: 0.45, ease: "expo.out"}, 52);
+      tl.to("#cta", {scale: 1.04, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 3}, 54);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
