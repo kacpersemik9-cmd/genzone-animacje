@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+@font-face {
+  font-family: "Jakarta";
+  src: url("assets/fonts/jakarta.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0B1220; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0B1220;
+  font-family: "Jakarta", sans-serif; color: #fff; }
+.scene, .bgl, .linewrap { position: absolute; inset: 0; }
+
+/* background */
+.glow { position: absolute; inset: 0;
+  background: radial-gradient(ellipse 45% 50% at 50% 50%, rgba(43, 99, 240, 0.32), rgba(11, 18, 32, 0) 70%); }
+.leak { position: absolute; width: 900px; height: 900px; border-radius: 50%; filter: blur(40px); }
+.leak.tl { left: -520px; top: -560px; background: radial-gradient(circle, rgba(43, 99, 240, 0.85), rgba(43, 99, 240, 0) 65%); }
+.leak.br { right: -520px; bottom: -560px; background: radial-gradient(circle, rgba(43, 99, 240, 0.85), rgba(43, 99, 240, 0) 65%); }
+.gridlines { position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(62, 197, 255, 0.10) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(62, 197, 255, 0.10) 2px, transparent 2px);
+  background-size: 160px 160px; background-position: 0 60px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 85%); }
+
+/* lines */
+.line { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-size: 54px; font-weight: 800;
+  letter-spacing: -0.02em; background: linear-gradient(180deg, #ffffff 30%, #AEB8D0 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.9)); }
+
+/* logo */
+.wave { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+.mark { position: absolute; left: 750px; top: 330px; width: 420px; height: 420px; border-radius: 50%;
+  -webkit-mask-image: radial-gradient(circle, #000 69%, transparent 70.5%);
+  mask-image: radial-gradient(circle, #000 69%, transparent 70.5%); }
+.wordmark { position: absolute; left: 550px; top: 430px; width: 820px; height: 220px;
+  -webkit-mask-image: radial-gradient(ellipse 58% 68% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 58% 68% at 50% 50%, #000 62%, transparent 100%); }
+#wm1 { top: 330px; }
+#mark1 { top: 230px; }
+
+
+/* money headline */
+.headline { position: absolute; left: 60px; right: 60px; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; align-content: center; gap: 0 30px; font-size: 112px; font-weight: 800; letter-spacing: -0.03em; }
+.headline .w { display: inline-block; white-space: nowrap; -webkit-background-clip: text; background-clip: text; color: transparent; padding: 10px 0; }
+.gold { background-image: linear-gradient(180deg, #F5C451, #B8862B); }
+.silver { background-image: linear-gradient(180deg, #FFFFFF 20%, #8F9BB5 100%); }
+.blue { background-image: linear-gradient(180deg, #5B8DFF, #2B63F0); }
+
+
+/* end card */
+#wm2 { top: 300px; width: 900px; height: 241px; left: 510px; }
+.url { position: absolute; left: 0; right: 0; top: 580px; display: flex; justify-content: center; align-items: center; gap: 16px;
+  font-size: 40px; font-weight: 700; }
+.endline { position: absolute; left: 0; right: 0; top: 670px; text-align: center; font-size: 48px; font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 30%, #AEB8D0 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cta { position: absolute; left: 660px; top: 790px; width: 600px; height: 90px; border-radius: 999px; background: #2B63F0;
+  display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800;
+  border: 2px solid #3EC5FF; box-shadow: 0 0 24px rgba(62, 197, 255, 0.5); }
+#mark2 { left: 750px; top: 330px; }
+
+
+/* screenshot frames */
+.stage3d { position: absolute; inset: 0; perspective: 1800px; }
+.cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.frame { position: absolute; border-radius: 18px; transform-origin: 50% 100%;
+  box-shadow: 0 0 0 4px #3EC5FF, 0 0 0 7px rgba(43, 99, 240, 0.9), 0 0 40px rgba(62, 197, 255, 0.6), 0 0 120px rgba(43, 99, 240, 0.45); }
+.frame > img { display: block; width: 100%; height: 100%; border-radius: 18px; }
+.hl { position: absolute; border-radius: 10px; opacity: 0; pointer-events: none;
+  box-shadow: 0 0 0 3px #3EC5FF, 0 0 24px rgba(62, 197, 255, 0.85), inset 0 0 18px rgba(62, 197, 255, 0.35); }
+.hl.hlgold { box-shadow: 0 0 0 3px #F5C451, 0 0 28px rgba(245, 196, 81, 0.75), inset 0 0 14px rgba(245, 196, 81, 0.25); }
+.dimmer { position: absolute; inset: 0; border-radius: 18px; background: rgba(5, 10, 26, 0.7); opacity: 0; z-index: 4; }
+.popcard { position: absolute; border-radius: 16px; opacity: 0; z-index: 5; background-repeat: no-repeat;
+  box-shadow: 0 0 0 3px #3EC5FF, 0 0 50px rgba(62, 197, 255, 0.6), 0 30px 70px rgba(0, 0, 0, 0.6); }
+.headline .w.silver2 { background-image: linear-gradient(180deg, #FFFFFF 20%, #8F9BB5 100%); }
+.linewrap::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 300px;
+  background: linear-gradient(180deg, rgba(11, 18, 32, 0) 0%, rgba(11, 18, 32, 0.88) 55%, rgba(11, 18, 32, 0.95) 100%); }
+
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <div id="bg" class="clip bgl" data-start="0" data-duration="30" data-track-index="0"><div class="glow"></div><div class="leak tl"></div><div class="leak br"></div></div>
+      <div id="grid" class="clip bgl" data-start="3" data-duration="22" data-track-index="1"><div class="gridlines"></div></div>
+      <div id="s1" class="clip scene" data-start="0" data-duration="3" data-track-index="2"><svg class="wave" viewBox="0 0 1920 1080" preserveAspectRatio="none"><defs><radialGradient id="wg" cx="55%" cy="65%" r="60%"><stop offset="0" stop-color="#2B63F0"/><stop offset="1" stop-color="#14306f"/></radialGradient></defs><path d="M-200,700 C200,520 420,380 760,560 C1080,740 1300,260 1560,120 L2200,-200 L2200,300 C1700,420 1500,900 1080,980 C700,1060 420,820 -200,1060 Z" fill="url(#wg)"/></svg><img class="mark" id="mark1" src="assets/img/mark.png" alt=""><img class="wordmark" id="wm1" src="assets/img/wordmark.png" alt="GenZone"></div>
+      <div id="l1" class="clip linewrap" data-start="1.9" data-duration="1.1" data-track-index="9"><div class="line">Your partner in business formation and growth.</div></div>
+      <div id="s2" class="clip scene" data-start="3" data-duration="8" data-track-index="2"><div class="stage3d"><div class="cam" id="dc"><div class="frame" id="df" style="left:216.5px;top:16.0px;width:1487px;height:908px"><img src="screenshots/dashboard-earn-pipeline.jpg" alt="GenZone dashboard screenshot"><div class="hl" id="shareHl" style="left:398px;top:111px;width:82px;height:39px"></div><div class="hl" id="copyHl" style="left:289px;top:111px;width:104px;height:39px"></div><div class="hl cyan" id="stageHl" style="left:288px;top:647px;width:152px;height:53px"></div></div></div></div></div>
+      <div id="l2" class="clip linewrap" data-start="3.6" data-duration="3.4" data-track-index="9"><div class="line">Your personal referral link.</div></div>
+      <div id="l3" class="clip linewrap" data-start="7.3" data-duration="3.7" data-track-index="9"><div class="line">Track every referral, from lead to paid.</div></div>
+      <div id="s4a" class="clip scene" data-start="11" data-duration="1.6" data-track-index="2"><div class="headline"><span class="w gold">$500</span> <span class="w silver">Per</span> <span class="w blue">Dubai Company</span></div></div>
+      <div id="s4b" class="clip scene" data-start="12.6" data-duration="2.4" data-track-index="2"><div class="stage3d"><div class="cam" id="s4bc"><div class="frame" id="s4bf" style="left:345.5px;top:275.5px;width:1229px;height:389px"><img src="screenshots/what-you-earn.jpg" alt="GenZone dashboard screenshot"><div class="hl hlgold" id="s4bhl" style="left:48px;top:191px;width:553px;height:39px"></div></div></div></div></div>
+      <div id="s5a" class="clip scene" data-start="15" data-duration="1.6" data-track-index="2"><div class="headline"><span class="w silver">Up to</span> <span class="w gold">$400</span> <span class="w silver">Per</span> <span class="w blue">US LLC</span></div></div>
+      <div id="s5b" class="clip scene" data-start="16.6" data-duration="2.4" data-track-index="2"><div class="stage3d"><div class="cam" id="s5bc"><div class="frame" id="s5bf" style="left:345.5px;top:275.5px;width:1229px;height:389px"><img src="screenshots/what-you-earn.jpg" alt="GenZone dashboard screenshot"><div class="hl hlgold" id="s5bhl" style="left:634px;top:230px;width:552px;height:39px"></div></div></div></div></div>
+      <div id="s6" class="clip scene" data-start="19" data-duration="6" data-track-index="2"><div class="stage3d"><div class="cam" id="ec"><div class="frame" id="ef" style="left:345.5px;top:275.5px;width:1229px;height:389px"><img src="screenshots/what-you-earn.jpg" alt="GenZone dashboard screenshot"><div class="popcard" id="popD" style="left:40px;top:67px;width:570px;height:216px;background-image:url(screenshots/what-you-earn.jpg);background-position:-40px -67px;background-size:1229px 389px"></div><div class="popcard" id="popU" style="left:626px;top:67px;width:569px;height:216px;background-image:url(screenshots/what-you-earn.jpg);background-position:-626px -67px;background-size:1229px 389px"></div><div class="popcard" id="popF" style="left:24px;top:290px;width:1190px;height:70px;background-image:url(screenshots/what-you-earn.jpg);background-position:-24px -290px;background-size:1229px 389px"></div><div class="dimmer" id="dim6"></div></div></div></div></div>
+      <div id="l6a" class="clip linewrap" data-start="19.35" data-duration="1.65" data-track-index="9"><div class="line">Fixed fee per Dubai company.</div></div>
+      <div id="l6b" class="clip linewrap" data-start="21.0" data-duration="2.0" data-track-index="9"><div class="line">Percentage on every US LLC.</div></div>
+      <div id="l6c" class="clip linewrap" data-start="23.0" data-duration="2.0" data-track-index="9"><div class="line">Your rate is locked in when you earn it.</div></div>
+      <div id="wipe" class="clip scene" data-start="24.95" data-duration="1.0" data-track-index="8"><img class="mark" id="mark2" src="assets/img/mark.png" alt=""></div>
+      <div id="end" class="clip scene" data-start="25.55" data-duration="4.45" data-track-index="7"><img class="wordmark" id="wm2" src="assets/img/wordmark.png" alt="GenZone"><div class="url" id="url"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2B63F0" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><ellipse cx="12" cy="12" rx="4.2" ry="10"/><path d="M2 12h20M4 7h16M4 17h16"/></svg><span>www.genzone.com</span></div><div class="endline" id="endline">Share your link. Refer your network. Start earning.</div><div class="cta" id="cta">Join the referral program</div></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#grid .gridlines", {opacity: 0}, {opacity: 1, duration: 0.5}, 3);
+      tl.fromTo("#s1 .wave", {clipPath: "inset(0% 100% 0% 0%)", opacity: 1}, {clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power3.inOut"}, 0);
+      tl.to("#s1 .wave", {opacity: 0, duration: 0.5, ease: "power1.out"}, 1.2);
+      tl.fromTo("#mark1", {scale: 0.2, rotation: -120, opacity: 0}, {scale: 1, rotation: 0, opacity: 1, duration: 0.8, ease: "back.out(1.4)"}, 0.45);
+      tl.to("#mark1", {scale: 0.215, x: 109, y: 5, duration: 0.55, ease: "power3.inOut"}, 1.35);
+      tl.fromTo("#wm1", {opacity: 0, scale: 1.08}, {opacity: 1, scale: 1, duration: 0.45, ease: "power2.out"}, 1.6);
+      tl.to("#mark1", {opacity: 0, duration: 0.15}, 1.9);
+      tl.fromTo("#l1 .line", {y: 30, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 1.95);
+      tl.fromTo("#dc", {x: 76.8, y: 7.6, scale: 0.92}, {...{x: 76.8, y: 7.6, scale: 0.92}, duration: 0.01}, 3);
+      tl.fromTo("#df", {rotationX: 60, y: 560, opacity: 0}, {rotationX: 0, y: 0, opacity: 1, duration: 1.0, ease: "power3.out"}, 3);
+      tl.to("#dc", {...{x: -971.8, y: 138.6, scale: 2.45}, duration: 0.55, ease: "expo.inOut"}, 4.2);
+      tl.fromTo("#copyHl", {opacity: 0}, {opacity: 1, duration: 0.2}, 4.9);
+      tl.to("#copyHl", {opacity: 0, duration: 0.2}, 5.6);
+      tl.fromTo("#shareHl", {opacity: 0, scale: 1}, {opacity: 1, scale: 1.12, duration: 0.18, yoyo: true, repeat: 3, ease: "sine.inOut"}, 5.75);
+      tl.to("#dc", {...{x: -672.8, y: -592.0, scale: 1.5}, duration: 0.7, ease: "power3.inOut"}, 7.0);
+      tl.fromTo("#l2 .line", {y: 30, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 3.65);
+      tl.fromTo("#stageHl", {opacity: 0}, {opacity: 1, duration: 0.2}, 7.75);
+      tl.to("#stageHl", {x: 167, scaleX: 0.993, transformOrigin: "0% 50%", duration: 0.22, ease: "power2.inOut"}, 8.40);
+      tl.to("#stageHl", {x: 333, scaleX: 1.000, transformOrigin: "0% 50%", duration: 0.22, ease: "power2.inOut"}, 8.85);
+      tl.to("#stageHl", {x: 500, scaleX: 1.000, transformOrigin: "0% 50%", duration: 0.22, ease: "power2.inOut"}, 9.30);
+      tl.to("#stageHl", {x: 667, scaleX: 1.000, transformOrigin: "0% 50%", duration: 0.22, ease: "power2.inOut"}, 9.75);
+      tl.to("#stageHl", {x: 834, scaleX: 0.993, transformOrigin: "0% 50%", duration: 0.22, ease: "power2.inOut"}, 10.20);
+      tl.to("#stageHl", {x: 1001, scaleX: 1.105, transformOrigin: "0% 50%", duration: 0.22, ease: "power2.inOut"}, 10.65);
+      tl.to("#dc", {...{x: -864.8, y: -592.0, scale: 1.5}, duration: 2.6, ease: "none"}, 8.0);
+      tl.fromTo("#l3 .line", {y: 30, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 7.35);
+      tl.fromTo("#s4a .w", {yPercent: 60, opacity: 0, scale: 1.3}, {yPercent: 0, opacity: 1, scale: 1, duration: 0.32, ease: "expo.out", stagger: 0.14}, 11);
+      tl.fromTo("#s4a .headline", {scale: 1}, {scale: 1.06, duration: 1.6, ease: "none"}, 11);
+      tl.fromTo("#s4bc", {x: -12.2, y: -264.0, scale: 1.45}, {...{x: -112.8, y: -336.8, scale: 1.6}, duration: 0.6, ease: "power2.out"}, 12.6);
+      tl.to("#s4bc", {...{x: -883.9, y: -895.1, scale: 2.75}, duration: 0.6, ease: "expo.inOut"}, 13.35);
+      tl.fromTo("#s4bhl", {opacity: 0}, {opacity: 1, duration: 0.3}, 13.9);
+      tl.fromTo("#s5a .w", {yPercent: 60, opacity: 0, scale: 1.3}, {yPercent: 0, opacity: 1, scale: 1, duration: 0.32, ease: "expo.out", stagger: 0.14}, 15);
+      tl.fromTo("#s5a .headline", {scale: 1}, {scale: 1.06, duration: 1.6, ease: "none"}, 15);
+      tl.fromTo("#s5bc", {x: -860.5, y: -264.0, scale: 1.45}, {...{x: -1048.8, y: -336.8, scale: 1.6}, duration: 0.6, ease: "power2.out"}, 16.6);
+      tl.to("#s5bc", {...{x: -2492.6, y: -1002.4, scale: 2.75}, duration: 0.6, ease: "expo.inOut"}, 17.35);
+      tl.fromTo("#s5bhl", {opacity: 0}, {opacity: 1, duration: 0.3}, 17.900000000000002);
+      tl.fromTo("#ec", {x: -960.0, y: -500.0, scale: 2.0}, {...{x: -403.2, y: -237.4, scale: 1.42}, duration: 0.6, ease: "power3.out"}, 19);
+      tl.to("#dim6", {opacity: 1, duration: 0.35}, 19.5);
+      tl.to("#popD", {opacity: 1, scale: 1.06, x: -30, y: -10, duration: 0.45, ease: "back.out(1.7)"}, 19.6);
+      tl.to("#popU", {opacity: 1, scale: 1.06, x: 30, y: -10, duration: 0.45, ease: "back.out(1.7)"}, 19.8);
+      tl.to("#popU", {scale: 1.1, duration: 0.3}, 21.0);
+      tl.to("#popD", {opacity: 0, scale: 1.0, x: 0, y: 0, duration: 0.3}, 21.0);
+      tl.to("#popU", {opacity: 0, scale: 1.0, x: 0, y: 0, duration: 0.3}, 23.0);
+      tl.to("#popF", {opacity: 1, scale: 1.04, y: 14, duration: 0.4, ease: "back.out(1.7)"}, 23.0);
+      tl.fromTo("#l6a .line", {y: 30, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 19.400000000000002);
+      tl.fromTo("#l6b .line", {y: 30, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 21.05);
+      tl.fromTo("#l6c .line", {y: 30, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 23.05);
+      tl.fromTo("#mark2", {scale: 0.15, rotation: -40, opacity: 0.95}, {scale: 6.5, rotation: 0, duration: 0.6, ease: "power3.in"}, 24.95);
+      tl.to("#mark2", {opacity: 0, duration: 0.3}, 25.6);
+      tl.fromTo("#wm2", {scale: 1.2, opacity: 0}, {scale: 1, opacity: 1, duration: 0.45, ease: "expo.out"}, 25.55);
+      tl.fromTo("#url", {y: 20, opacity: 0}, {y: 0, opacity: 1, duration: 0.3, ease: "power3.out"}, 25.7);
+      tl.fromTo("#endline", {y: 20, opacity: 0}, {y: 0, opacity: 1, duration: 0.3, ease: "power3.out"}, 25.85);
+      tl.fromTo("#cta", {scale: 0.7, opacity: 0}, {scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)"}, 26.0);
+      tl.to("#cta", {boxShadow: "0 0 50px rgba(62,197,255,0.8)", duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut"}, 26.6);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
