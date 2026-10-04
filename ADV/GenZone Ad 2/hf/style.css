@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Display";
+  src: url("assets/fonts/inter-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0B1220; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0B1220;
+  font-family: "Display", sans-serif; color: #fff; }
+.scene, .bgl, .capwrap { position: absolute; inset: 0; }
+
+/* stage */
+.glow { position: absolute; left: 260px; top: 60px; width: 1400px; height: 960px; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(43, 99, 240, 0.40), rgba(43, 99, 240, 0) 66%); }
+.leak { position: absolute; width: 950px; height: 950px; border-radius: 50%; }
+.leak.tl { left: -600px; top: -620px; background: radial-gradient(circle, rgba(62, 197, 255, 0.40), rgba(43, 99, 240, 0) 65%); }
+.leak.br { right: -600px; bottom: -620px; background: radial-gradient(circle, rgba(43, 99, 240, 0.70), rgba(43, 99, 240, 0) 65%); }
+.gridlines { position: absolute; inset: -300px;
+  background-image: linear-gradient(rgba(62, 197, 255, 0.07) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(62, 197, 255, 0.07) 2px, transparent 2px);
+  background-size: 150px 150px;
+  -webkit-mask-image: radial-gradient(ellipse 45% 45% at 50% 50%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 45% 45% at 50% 50%, #000 30%, transparent 80%); }
+
+/* the oner */
+.lens { position: absolute; inset: 0; perspective: 1500px; transform-style: preserve-3d; }
+.cam { position: absolute; width: 0; height: 0; transform-style: preserve-3d; }
+.world { position: absolute; left: 0; top: 0; transform-origin: 0 0; transform-style: preserve-3d; border-radius: 18px;
+  box-shadow: 0 0 0 3px #3EC5FF, 0 0 0 6px rgba(43, 99, 240, 0.85), 0 0 50px rgba(62, 197, 255, 0.5), 0 0 160px rgba(43, 99, 240, 0.45); }
+.world > img { display: block; width: 100%; height: 100%; border-radius: 18px; }
+.edge { position: absolute; inset: -3px; border-radius: 20px; pointer-events: none; padding: 3px;
+  background: linear-gradient(90deg, transparent 0%, transparent 40%, rgba(255, 255, 255, 0.95) 50%, transparent 60%, transparent 100%);
+  background-size: 33% 100%; background-repeat: no-repeat; background-position: -50% 0;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask-composite: exclude; }
+.sweep { position: absolute; border-radius: 8px; pointer-events: none; mix-blend-mode: screen;
+  background-image: linear-gradient(100deg, transparent 35%, rgba(62, 197, 255, 0.6) 50%, transparent 65%);
+  background-size: 50% 100%; background-repeat: no-repeat; background-position: -120% 0; }
+.dimw { position: absolute; inset: 0; border-radius: 18px; background: rgba(5, 10, 24, 0.7); opacity: 0; transform: translateZ(1px); }
+.crop { position: absolute; background-image: url("assets/img/dash_safe.png"); background-size: 1487px 598px;
+  background-repeat: no-repeat; border-radius: 10px; }
+.crop.lift { opacity: 0;
+  box-shadow: 0 0 0 2px #F5C451, 0 0 34px rgba(245, 196, 81, 0.65), 0 30px 60px rgba(0, 0, 0, 0.6); }
+.uline { position: absolute; height: 3px; border-radius: 2px; transform-origin: 0 50%; transform: scaleX(0);
+  background: linear-gradient(90deg, #F5C451, #B8862B); box-shadow: 0 0 12px rgba(245, 196, 81, 0.9); }
+
+/* captions */
+.capt { position: absolute; left: 150px; top: 820px; }
+.ln { overflow: hidden; padding: 4px 0 8px; }
+.ln span { display: inline-block; font-size: 72px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.02;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7); }
+.gold { background: linear-gradient(180deg, #F5C451 10%, #B8862B 95%); -webkit-background-clip: text; background-clip: text;
+  color: transparent; font-weight: 900; }
+
+/* logo */
+.ring { position: absolute; left: 726px; top: 236px; width: 468px; height: 468px; border-radius: 50%;
+  box-shadow: 0 0 0 3px #3EC5FF, 0 0 50px rgba(62, 197, 255, 0.6), 0 0 140px rgba(43, 99, 240, 0.5); }
+.mark { position: absolute; left: 730px; top: 240px; width: 460px; height: 460px; border-radius: 50%; --a: 0deg;
+  -webkit-mask-image: conic-gradient(from 0deg, #000 var(--a), transparent var(--a));
+  mask-image: conic-gradient(from 0deg, #000 var(--a), transparent var(--a)); }
+
+/* end card */
+.endin { position: absolute; inset: 0; background: #0B1220; }
+#end { z-index: 6; }
+#logo { z-index: 8; }
+.wordmark { position: absolute; left: 510px; top: 330px; width: 900px; height: 241px;
+  -webkit-mask-image: radial-gradient(ellipse 58% 68% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 58% 68% at 50% 50%, #000 62%, transparent 100%); }
+.url { position: absolute; left: 0; right: 0; top: 610px; display: flex; justify-content: center; align-items: center; gap: 16px;
+  font-size: 42px; font-weight: 700; letter-spacing: -0.01em; }
+.cta { position: absolute; left: 640px; top: 730px; width: 640px; height: 100px; border-radius: 999px; overflow: hidden;
+  background: linear-gradient(180deg, #3B74FF, #2B63F0); display: flex; align-items: center; justify-content: center;
+  font-size: 38px; font-weight: 800; letter-spacing: -0.01em;
+  box-shadow: 0 0 0 2px rgba(62, 197, 255, 0.7), 0 0 40px rgba(62, 197, 255, 0.45); }
+.shine { position: absolute; top: 0; bottom: 0; left: 0; width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent); }
+
+/* made by */
+.mb { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #0B1220; perspective: 900px; }
+.mb1 { font-size: 34px; font-weight: 500; color: #8E9AB8; text-transform: uppercase; letter-spacing: 0.12em; }
+.mb2 { margin-top: 10px; font-size: 120px; font-weight: 850; letter-spacing: -0.045em; }
+.mb2 .ch { display: inline-block; transform-origin: 50% 100%; }
+.capwrap::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 420px;
+  background: linear-gradient(180deg, rgba(11, 18, 32, 0) 0%, rgba(11, 18, 32, 0.78) 60%, rgba(11, 18, 32, 0.9) 100%); }
