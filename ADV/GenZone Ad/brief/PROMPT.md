@@ -1,6 +1,6 @@
 # GenZone Referral Program — spec ad · BRIEF v1
 
-Status: **Idea A chosen. PREVIEW v1 (16:9, 60 fps, picture + music, no VO/SFX per client) delivered 2026-10-04 — awaiting feedback.**
+Status: **Idea A chosen. PREVIEW v2 (made-by card removed per client; ends on the GenZone end card at 21.6 s) delivered 2026-10-04 — awaiting feedback.**
 Date: 2026-10-04
 
 ---

@@ -10,7 +10,7 @@ import wave
 import numpy as np
 
 SR = 48000
-DUR = 24.0
+DUR = 21.6
 BPM = 112
 BEAT = 60 / BPM
 N = int(SR * DUR)
@@ -137,7 +137,7 @@ sub(29, WIPE, DUR - WIPE - 0.5, 0.35)
 
 # master: gentle fade out, peak normalise to -3 dBFS (loudnorm does the rest)
 fade = np.ones(N)
-fo = int(1.2 * SR)
+fo = int(1.6 * SR)
 fade[-fo:] = np.linspace(1, 0, fo)
 L *= fade
 R *= fade

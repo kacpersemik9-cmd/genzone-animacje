@@ -46,9 +46,9 @@ def crop_div(img, x, y, w, h, s, extra=""):
 
 
 # ---------------------------------------------------------------- background
-clip("bg", 0, 24, '<div class="glow" id="glow"></div><div class="leak tl"></div><div class="leak br"></div>',
+clip("bg", 0, 21.6, '<div class="glow" id="glow"></div><div class="leak tl"></div><div class="leak br"></div>',
      track=0, cls="bgl")
-T('tl.fromTo("#glow", {x: -260, y: -40, scale: 1}, {x: 260, y: 60, scale: 1.15, duration: 24, ease: "sine.inOut"}, 0);')
+T('tl.fromTo("#glow", {x: -260, y: -40, scale: 1}, {x: 260, y: 60, scale: 1.15, duration: 21.6, ease: "sine.inOut"}, 0);')
 clip("grid", 3.6, 10.6, '<div class="gridlines"></div>', track=1, cls="bgl")
 T('tl.fromTo("#grid .gridlines", {opacity: 0}, {opacity: 1, duration: 0.4}, 3.6);')
 T('tl.to("#grid .gridlines", {opacity: 0, duration: 0.3}, 13.9);')
@@ -174,18 +174,9 @@ T('tl.fromTo("#wm", {scale: 1.25, filter: "blur(14px)", opacity: 0}, {scale: 1, 
 T('tl.fromTo("#url", {y: 24, opacity: 0}, {y: 0, opacity: 1, duration: 0.35, ease: "power3.out"}, 16.9);')
 T('tl.fromTo("#cta", {scale: 0.7, opacity: 0}, {scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)"}, 17.1);')
 T('tl.to("#cta", {boxShadow: "0 0 0 2px #3EC5FF, 0 0 60px rgba(62,197,255,0.75)", duration: 0.6, yoyo: true, repeat: 3, ease: "sine.inOut"}, 18.0);')
-T('tl.to("#end .endin", {opacity: 0, filter: "blur(10px)", duration: 0.3}, 21.3);')
-
-# ---------------------------------------------------------------- 9. made by card (21.6 - 24)
-clip("madeby", 21.6, 2.4, '<div class="mb"><div class="mb1" id="mb1">made by</div>'
-     '<div class="mb2" id="mb2">Kacper Semik</div><div class="mbline" id="mbl"></div></div>', track=7)
-T('tl.fromTo("#mb1", {opacity: 0, y: 14}, {opacity: 1, y: 0, duration: 0.35, ease: "power3.out"}, 21.65);')
-T('tl.fromTo("#mb2", {clipPath: "inset(0 100% 0 0)", filter: "blur(8px)"}, {clipPath: "inset(0 0% 0 0)", filter: "blur(0px)", duration: 0.6, ease: "power3.inOut"}, 21.8);')
-T('tl.fromTo("#mbl", {scaleX: 0}, {scaleX: 1, duration: 0.6, ease: "power3.inOut"}, 22.0);')
-T('tl.to("#madeby .mb", {opacity: 0, duration: 0.5}, 23.45);')
 
 # music
-clips.append('<audio id="music" class="clip" src="assets/music.wav" data-start="0" data-duration="24" data-track-index="10"></audio>')
+clips.append('<audio id="music" class="clip" src="assets/music.wav" data-start="0" data-duration="21.6" data-track-index="10"></audio>')
 
 css = open("style.css").read()
 open("index.html", "w").write(f"""<!doctype html>
@@ -199,7 +190,7 @@ open("index.html", "w").write(f"""<!doctype html>
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="{W}" data-height="{H}">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="21.6" data-width="{W}" data-height="{H}">
 {chr(10).join("      " + c for c in clips)}
     </div>
     <script>
