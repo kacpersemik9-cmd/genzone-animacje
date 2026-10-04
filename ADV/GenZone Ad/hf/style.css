@@ -1,0 +1,90 @@
+@font-face {
+  font-family: "Display";
+  src: url("assets/fonts/inter-var.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0B1220; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #0B1220;
+  font-family: "Display", sans-serif; color: #fff; }
+.scene, .bgl { position: absolute; inset: 0; }
+
+/* stage */
+.glow { position: absolute; left: 310px; top: 90px; width: 1300px; height: 900px; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(43, 99, 240, 0.38), rgba(43, 99, 240, 0) 68%); }
+.leak { position: absolute; width: 900px; height: 900px; border-radius: 50%; }
+.leak.tl { left: -560px; top: -580px; background: radial-gradient(circle, rgba(62, 197, 255, 0.45), rgba(43, 99, 240, 0) 65%); }
+.leak.br { right: -560px; bottom: -580px; background: radial-gradient(circle, rgba(43, 99, 240, 0.7), rgba(43, 99, 240, 0) 65%); }
+.gridlines { position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(62, 197, 255, 0.08) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(62, 197, 255, 0.08) 2px, transparent 2px);
+  background-size: 150px 150px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 45%, #000 25%, transparent 80%);
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 45%, #000 25%, transparent 80%); }
+
+/* kinetic type */
+.qwrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.q { font-size: 150px; font-weight: 850; letter-spacing: -0.045em; line-height: 1.02; text-align: center; white-space: nowrap; }
+.q.small { font-size: 120px; }
+.w { display: inline-block; }
+.w.acc { background: linear-gradient(180deg, #6E9BFF, #2B63F0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.gold { background: linear-gradient(180deg, #F5C451 10%, #B8862B 95%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cap { position: absolute; left: 0; right: 0; top: 760px; text-align: center; font-size: 64px; font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.1; }
+
+/* screenshots */
+.stage3d { position: absolute; inset: 0; perspective: 1700px; transform-style: preserve-3d; }
+.shot { position: absolute; border-radius: 20px; transform-origin: 50% 50%;
+  box-shadow: 0 0 0 4px #3EC5FF, 0 0 0 7px rgba(43, 99, 240, 0.9), 0 0 50px rgba(62, 197, 255, 0.55), 0 0 140px rgba(43, 99, 240, 0.45); }
+.shot > img { display: block; width: 100%; height: 100%; border-radius: 20px; }
+.sweep { position: absolute; border-radius: 10px; pointer-events: none; mix-blend-mode: screen;
+  background-image: linear-gradient(100deg, transparent 35%, rgba(62, 197, 255, 0.55) 50%, transparent 65%);
+  background-size: 50% 100%; background-repeat: no-repeat; background-position: -120% 0; }
+#copyBtn { position: absolute; inset: 0; pointer-events: none; }
+.crop { background-repeat: no-repeat; border-radius: 12px; }
+.dim { position: absolute; inset: 0; border-radius: 20px; background: rgba(5, 10, 24, 0.72); opacity: 0; }
+.pop { position: absolute; opacity: 0; }
+.pop .crop { border-radius: 18px;
+  box-shadow: 0 0 0 3px #3EC5FF, 0 0 60px rgba(62, 197, 255, 0.6), 0 40px 90px rgba(0, 0, 0, 0.65); }
+
+/* money */
+.flash { position: absolute; inset: 0; background: #ffffff; opacity: 0; }
+.money { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.upto { font-size: 70px; font-weight: 700; color: #C9D3EA; letter-spacing: -0.02em; }
+.big { font-size: 330px; font-weight: 900; line-height: 0.95; letter-spacing: -0.02em; padding: 0 20px; }
+.per { font-size: 90px; font-weight: 800; letter-spacing: -0.035em;
+  background: linear-gradient(180deg, #FFFFFF 25%, #9AA6C2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rowshot { position: absolute; }
+.rowshot .crop { border-radius: 22px; box-shadow: 0 0 60px rgba(43, 99, 240, 0.5); }
+.trace { position: absolute; left: 0; top: 0; overflow: visible; }
+.trace rect { fill: none; stroke: #F5C451; stroke-width: 5; stroke-dasharray: 1; stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 10px rgba(245, 196, 81, 0.9)); }
+.rack { position: absolute; opacity: 0; transform-origin: 50% 50%; }
+.rack .crop { border-radius: 20px; box-shadow: 0 0 0 2px rgba(62, 197, 255, 0.6), 0 0 50px rgba(43, 99, 240, 0.5); }
+.kicker { position: absolute; left: 0; right: 0; top: 250px; text-align: center; font-size: 56px; font-weight: 800;
+  letter-spacing: -0.02em; color: #9FC0FF; opacity: 0; }
+.lower { position: absolute; left: 0; right: 0; top: 780px; text-align: center; font-size: 36px; font-weight: 600;
+  color: #C9D3EA; opacity: 0; }
+
+/* logo, end card, made by */
+.mark { position: absolute; left: 750px; top: 330px; width: 420px; height: 420px; border-radius: 50%;
+  -webkit-mask-image: radial-gradient(circle, #000 69%, transparent 70.5%);
+  mask-image: radial-gradient(circle, #000 69%, transparent 70.5%); }
+#end { background: #0B1220; }
+.endin { position: absolute; inset: 0; }
+.wordmark { position: absolute; left: 510px; top: 300px; width: 900px; height: 241px;
+  -webkit-mask-image: radial-gradient(ellipse 58% 68% at 50% 50%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 58% 68% at 50% 50%, #000 62%, transparent 100%); }
+.url { position: absolute; left: 0; right: 0; top: 590px; display: flex; justify-content: center; align-items: center; gap: 16px;
+  font-size: 42px; font-weight: 700; letter-spacing: -0.01em; }
+.cta { position: absolute; left: 640px; top: 720px; width: 640px; height: 100px; border-radius: 999px;
+  background: linear-gradient(180deg, #3B74FF, #2B63F0); display: flex; align-items: center; justify-content: center;
+  font-size: 38px; font-weight: 800; letter-spacing: -0.01em; box-shadow: 0 0 0 2px rgba(62, 197, 255, 0.6), 0 0 30px rgba(62, 197, 255, 0.35); }
+#madeby { background: #0B1220; }
+.mb { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.mb1 { font-size: 40px; font-weight: 500; color: #8E9AB8; letter-spacing: 0.02em; }
+.mb2 { font-size: 110px; font-weight: 850; letter-spacing: -0.04em; margin-top: 4px; }
+.mbline { width: 520px; height: 4px; margin-top: 18px; border-radius: 2px; transform-origin: 0 50%;
+  background: linear-gradient(90deg, #2B63F0, #3EC5FF); }
+#wipe { z-index: 20; }

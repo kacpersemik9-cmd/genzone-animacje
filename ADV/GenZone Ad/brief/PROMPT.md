@@ -1,6 +1,6 @@
 # GenZone Referral Program — spec ad · BRIEF v1
 
-Status: **STEP 1 approved — Idea A ("You already get asked") chosen 2026-10-04. Now at STEP 2 (assets list). Nothing built, downloaded or generated yet.**
+Status: **Idea A chosen. PREVIEW v1 (16:9, 60 fps, picture + music, no VO/SFX per client) delivered 2026-10-04 — awaiting feedback.**
 Date: 2026-10-04
 
 ---
