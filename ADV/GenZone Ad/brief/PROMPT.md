@@ -1,6 +1,6 @@
 # GenZone Referral Program — spec ad · BRIEF v1
 
-Status: **STEP 1 — brief for approval. Nothing is built, downloaded or generated yet.**
+Status: **STEP 1 approved — Idea A ("You already get asked") chosen 2026-10-04. Now at STEP 2 (assets list). Nothing built, downloaded or generated yet.**
 Date: 2026-10-04
 
 ---
@@ -52,7 +52,7 @@ package name from the real "What you earn" table gets its price stamped on it in
 beat, like a rate card printing itself.
 Feels: punchy, rhythmic, the most "$"-forward of the three.
 
-**My pick: A.** It speaks straight to the four audiences, the hook works with the sound off,
+**CHOSEN: A** (client pick, 2026-10-04). **My pick was A.** It speaks straight to the four audiences, the hook works with the sound off,
 and it earns the "$500" instead of opening on it. B is the safest; C is the loudest but the
 most rate-card-heavy.
 
